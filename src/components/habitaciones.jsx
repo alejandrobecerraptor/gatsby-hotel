@@ -1,5 +1,8 @@
 import React from 'react';
-import {graphql, useStaticQuery} from 'gatsby';
+import {graphql} from 'gatsby';
+import Layout from '../components/layout';
+import { GatsbyImage } from "gatsby-plugin-image";
+
 
 export const query = graphql`
 query($slug: String!){
@@ -14,10 +17,16 @@ query($slug: String!){
 	}
 }
 `;
-const HabitacionTemplate = ({data}) => {
-    console.log(data)
+const HabitacionTemplate = ({data: {allDatoCmsHabitacion: {nodes}}}) => {
+    const {titulo, contenido, imagen} = nodes[0];
     return ( 
-        <p>habitacion.jsx</p>
+        <Layout>
+            <main>
+                <h1>{titulo}</h1>
+                <p>{contenido}</p>
+                <GatsbyImage  image={imagen.gatsbyImageData} alt="habitacion"/>
+            </main>
+        </Layout>
      );
 }
  
