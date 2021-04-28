@@ -1,4 +1,3 @@
-// import React from 'react'
 import {graphql,useStaticQuery} from 'gatsby';
 
 const useHabitaciones = () => {
@@ -19,9 +18,13 @@ const useHabitaciones = () => {
     `);
 
     console.log(data);
-    // return ( 
-    //     <p>Desde Hook</p>
-    //  );
+    return data.allDatoCmsHabitacion.nodes.map(habitacion =>({
+        titulo: habitacion.titulo,
+        id: habitacion.id,
+        contenido: habitacion.contenido,
+        imagen: habitacion.imagen,
+        slug: habitacion.slug,
+    }))
 }
  
 export default useHabitaciones;
